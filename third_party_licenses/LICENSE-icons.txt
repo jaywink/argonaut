@@ -1,0 +1,14 @@
+Argonaut is distributed with many icons for popular social sites. These icons are located in argonaut/public/media and are listed below. All icons are available as free for non-commercial license, some are totally free for any purpose. Please check the url for license terms for individual icons.
+
+Facebook: http://www.iconspedia.com/icon/facebook-3147.html
+Twitter: http://www.iconspedia.com/icon/twitter-3163.html
+Picasa: http://www.iconspedia.com/icon/picasa-2711.html
+Email: http://www.iconspedia.com/icon/email-14803.html
+Google Reader: http://www.iconspedia.com/icon/google-reader--763.html
+Google Talk: http://www.iconspedia.com/icon/google-talk--766.html
+DZone: http://www.iconspedia.com/icon/dzone-10300.html
+Delicious: http://www.iconspedia.com/icon/delicious.html
+Maemo.org: http://gitorious.org/system/group_avatars/qt-maemo-developers/thumb/maemo_org_favicon.png?1243284702
+42goals: http://42goals.com
+Diaspora*: http://blog.joindiaspora.com/2010/04/24/awesome-flyers-are-here.html
+Geocaching.com: http://www.geocaching.com/images/about/logos/geocaching/Logo_Geocaching_color_notext_300.png

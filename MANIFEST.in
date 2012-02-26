@@ -1,0 +1,3 @@
+include argonaut/config/deployment.ini_tmpl
+recursive-include argonaut/public *
+recursive-include argonaut/templates *

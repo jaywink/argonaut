@@ -1,0 +1,219 @@
+ARGONAUT   
+========
+
+Version 0.3.6
+
+Author: Jason Robinson
+jaywink (at) basshero.org
+http://www.basshero.org
+
+
+1. Description
+==============
+
+Argonaut is a blogging engine built with Pylons. It is lightweight
+and can be deployed on many types of web servers running Python.
+
+The application is still very much in alpha stages and as such 
+there are bugs in the system and a lot of features which have 
+not been implemented.
+
+For more information please see the following links:
+    Authors webpage
+       http://www.basshero.org
+    Pylons HQ
+       http://www.pylonshq.com
+
+
+2. Licence
+==========
+
+Argonaut is distributed under the FreeBSD license. This means you can use,
+copy and distribute the code and application for free and with no obligations.
+It is however required that the included copyright is included with the application
+using source or binary components. Please see the file LICENSE.txt for the full
+license.
+
+The licenses of the JavaScript components included with Argonaut do not
+enforce any additional requirements for reuse or distribution. Please see the
+licenses of these components and any included icons in the folder 'third_party_licenses'.
+
+
+3. Installation
+===============
+
+3.1 Prequisites for install
+---------------------------
+
+- Python 2.4 - 2.7 [http://www.python.org]
+- Pylons 1.0 [http://pylonshq.com/]
+- Python setuptools (easy_install) [http://pypi.python.org/pypi/setuptools]
+
+Please see Pylons documentation to get started with Pylons [http://pylonshq.com/docs/en/0.9.7/gettingstarted/].
+
+
+3.2 Other components
+--------------------
+
+In addition to Pylons, Argonaut uses the following components:
+
+- Mako (templates, the View) [http://www.makotemplates.org/]
+- SQLAlchemy (the Model) [http://www.sqlalchemy.org/]
+- Sqlalchemy-migrate (database migration) [http://pypi.python.org/pypi/sqlalchemy-migrate]
+- repoze.what (authentication and access rights) [http://what.repoze.org/docs/1.0/]
+- CKEditor (for writing posts) [http://ckeditor.com/]
+- AddToAny (for sharing) [http://www.addtoany.com/]
+- jQuery (for additional magic) [http://jquery.com/]
+- Simple3color (default theme) [http://www.oswd.org/design/preview/id/3533]
+- TurboMail (for notifications) [http://www.python-turbomail.org/]
+- pwi (Picasa Webalbum Integrator javascript library, for gallery) [http://code.google.com/p/pwi/]
+
+Of these the JavaScript components CKEditor, jQuery, pwi and AddToAny are
+distributed along with this package. The Python components are downloaded
+and installed by easy_install.
+
+
+3.3 Installation and Setup
+--------------------------
+
+Prequisites for install must be fulfilled. Install Argonaut using easy_install:
+
+    easy_install argonaut
+    
+       OR with local .egg file
+       
+    easy_install <path_to_egg_file>
+
+Make a config file as follows:
+
+    paster make-config argonaut config.ini
+
+Tweak the config file as appropriate. Please see Pylons application
+setup pages for hints on editing the config file [http://pythonpaste.org/deploy/].
+After this run the following to setup the application:
+
+    paster setup-app config.ini#arg
+
+Then you are ready to go.
+
+You can test the installation by running:
+
+    paster serve config.ini
+
+After this visit the link http://127.0.0.1:5000
+
+Optionally you can extract the source and run Argonaut by launching development
+mode via setup.py. Just extract the source, install Pylons and in the Argonaut
+base directory run:
+    
+    python setup.py develop
+    paster serve development.ini
+
+
+4. Updating from a previous version
+===================================
+
+TBD
+
+
+5. Usage
+========
+
+5.1 Modifying the site
+----------------------
+
+Argonaut features templates that can be used to control the site
+structure, layout and texts. Unfortunately in this early version
+there is no admin panel so all editing must be made to the files
+directly.
+
+Template files are situated in argonaut/templates. Please see
+Mako documentation on how to change the templates.
+
+
+5.2 Configuration
+-----------------
+
+During application setup a database will be created in the form
+that is configured in config.ini. In addition to blog data, Argonaut
+also stores some configuration values in the database. These are 
+stored in the table 'config'.
+
+
+5.3 Users
+---------
+
+The default user for writing posts is 'admin', password 'admin'.
+Currently users can only be added directly to the database. An
+admin panel will be added later.
+
+
+5.4 Other usage notes
+---------------------
+
+Proper documentation and usage will be added slowly over
+future releases :)
+
+
+6. Support
+==========
+
+Please contact the author at jaywink (at) basshero.org for support,
+ideas and bug reports.
+
+
+7. Changelog
+============
+
+0.3.6 October 2011
+    - Multiple fixes to latest blog posts comments and sharing
+    - Comments are loaded by default when viewing a post
+
+0.3.5 15th September 2011
+	- Added post sharing to Diaspora.
+	- Added parent_id column to table pages. Only those pages with parent_id = null are shown
+	  from base.mako template in the menu.
+
+0.3.4 30th March 2011
+    - Added custom javascript template that is loaded from base template for site wide usage.
+    - Removed usage of sqlalchemy-migrate since it was causing problems. A new type of DB migration
+      will be thought out later.
+
+0.3.3 29th March 2011
+    - Fixed routing for landing page with lowest page_order
+    - Post commenting can now be disabled with the config setting comments_enabled, true/false
+    - Fixed character encoding problem when getting page name from database
+    - Base page now only displays links to active pages
+    - Added a new page type, pwi_gallery, which is a gallery page using the jquery plugin 'pwi'
+      (Picasa Webalbum Integrator javascript library, http://code.google.com/p/pwi/).
+    
+0.3.2 20th February 2011
+    - Added 'media' and 'social' models to the database. Media contains links to 
+      images and other media items. Social contains links to contact information or
+      other sites. Links are given a media ID which is displayed in the Social -box with
+      an url to the site or contact information.
+
+0.3 13th February 2011
+    - sqlalchemy-migrate is now used to do automatic database schema
+      upgrades according to model changes. Added as dependency, installed
+      via easy_install automatically. Implementation thanks to:
+      http://shane.caraveo.com/2010/09/13/database-migrations-for-sqlalchemy-part-duex/
+    - Default landing page is now the one with the lowest page_order setting.
+    - Pages are now mapped to a page type. Default page types are 'blog', 'archives' and
+      'tags'.
+    - Page urls are now determined from page type, but can also be customised.
+    - Custom page support has been added. Custom pages are mapped to page type 'custom'
+      which redirects traffic to a mako template file as indicated in the pages table.
+    - Version number will now be displayed in the Powered by -section in the main template.
+      Removed these text strings and urls from the configuration table and placed them in
+      the base template.
+    Updating from version 0.2:
+    - Pre-upgrade the database table 'pages' needs to be dropped for an easy upgrade. After
+      this the script 'paster setup-app [config_file]#arg' needs to be run to create the
+      table with the new schema. The rest of the database changes should be handled by
+      the automatic schema update mechanism.
+
+0.2 6th December 2010
+    - Initial Pylons version release
+
+0.1.x   The 0.1 versions are the old PHP powered versions which were never released.
